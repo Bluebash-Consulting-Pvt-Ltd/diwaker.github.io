@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://www.bluebash.co/services/ruby-on-rails-development-company -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./ROR Development Consulting Solutions_ BlueBash_files/clarity.js.download"></script><script src="./ROR Development Consulting Solutions_ BlueBash_files/6780563.js.download" type="text/javascript" id="cookieBanner-6780563" data-cookieconsent="ignore" data-hs-ignore="true" data-loader="hs-scriptloader" data-hsjs-portal="6780563" data-hsjs-env="prod" data-hsjs-hublet="na1"></script><script src="./ROR Development Consulting Solutions_ BlueBash_files/6780563.js(1).download" type="text/javascript" id="hs-analytics"></script><script src="./ROR Development Consulting Solutions_ BlueBash_files/conversations-embed.js.download" type="text/javascript" id="hubspot-messages-loader" data-loader="hs-scriptloader" data-hsjs-portal="6780563" data-hsjs-env="prod" data-hsjs-hublet="na1"></script><script type="text/javascript" async="" src="./ROR Development Consulting Solutions_ BlueBash_files/recaptcha__en.js.download" crossorigin="anonymous" integrity="sha384-XR7MqpBQZ7rj79AkvDUBoyC0k/h38h0JQwfdLbDeumlU6srRetDW8JHponvmwca0"></script><script type="text/javascript" async="" src="./ROR Development Consulting Solutions_ BlueBash_files/recaptcha__en.js.download" crossorigin="anonymous" integrity="sha384-XR7MqpBQZ7rj79AkvDUBoyC0k/h38h0JQwfdLbDeumlU6srRetDW8JHponvmwca0"></script><script async="" src="./ROR Development Consulting Solutions_ BlueBash_files/7feehr6r7a"></script><script async="" src="./ROR Development Consulting Solutions_ BlueBash_files/gtm.js.download"></script><script type="text/javascript" async="" src="./ROR Development Consulting Solutions_ BlueBash_files/analytics.js.download"></script><script>(function(){function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}hookGeo();})()</script>
+    
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>ROR Development Consulting Solutions| BlueBash </title>
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="shortcut icon" type="image/png" href="https://www.bluebash.co/packs/media/images/icons/favicon-b6442fb64b329ce7549068e4cb118485.png">
+<meta content="" name="keywords">
+<meta content="" name="description">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<!-- Facebook Open Graph data -->
+<meta property="og:site_name" content="BlueBash portfolio">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ROR Development Consulting Solutions| BlueBash ">
+<meta property="og:description" content="">
+<meta property="og:url" content="https://www.bluebash.co/services/ruby-on-rails-development-company">
+<meta property="og:image" content="https://www.bluebash.co/packs/media/images/icons/logo-full-d69ad930bdcfc0c314b2eab9ca2b6a9f.png">
+<meta property="og:image:width" content="1328">
+<meta property="og:image:height" content="800">
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bluebash.co/">
+<meta name="twitter:title" content="ROR Development Consulting Solutions| BlueBash ">
+<meta name="twitter:description" content="">
+
+<meta name="twitter:url" content="https://www.bluebash.co/services/ruby-on-rails-development-company">
+<meta name="twitter:image" content="https://www.bluebash.co/packs/media/images/icons/logo-full-d69ad930bdcfc0c314b2eab9ca2b6a9f.png">
+
+<link rel="canonical" href="https://www.bluebash.co//services/ruby-on-rails-development-company">
+<link href="./ROR Development Consulting Solutions_ BlueBash_files/css" rel="stylesheet">
+
+<link rel="stylesheet" media="all" href="./ROR Development Consulting Solutions_ BlueBash_files/frontend-df7515c3.css" defer="defer">
+<link rel="stylesheet" href="./ROR Development Consulting Solutions_ BlueBash_files/all.min.css">
+<script src="./ROR Development Consulting Solutions_ BlueBash_files/application-210c56b3b5ca25b4bc48.js.download" data-turbolinks-track="reload" defer="defer"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script src="./ROR Development Consulting Solutions_ BlueBash_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', "UA-135911160-1");
+
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MKNZB49');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Clarity tracking code for https://www.bluebash.co/ --><script>    (function(c,l,a,r,i,t,y){        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);    })(window, document, "clarity", "script", "7feehr6r7a");</script>
+
+    
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1022.0" data-gr-ext-installed=""><style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important}#hubspot-messages-iframe-container.widget-align-left{left:0!important}#hubspot-messages-iframe-container.widget-align-right{right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow-container{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;content:""}#hubspot-messages-iframe-container .shadow-container.internal{display:none!important}#hubspot-messages-iframe-container .shadow-container.active{width:400px;height:400px}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKNZB49"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable mw-100 m-3 ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="modal-title" id="exampleModalLabel" href="https://www.bluebash.co/"><img class="img-fluid" alt="" src="./ROR Development Consulting Solutions_ BlueBash_files/brand_logo.svg"></a>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><i class="fas fa-times "></i></span>
+        </button>
+      </div>
+      <div class="modal-body header-nav-accordion ">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header p-0" id="headingOne">
+              <h6 class="mb-0">
+                <button class="btn btn-link align-items-center collapsed mb-0 btn-block h6 text-left d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <span class="h6 mb-0">Services</span> <span><i class="fas mb-0 h6"></i></span>
+                </button>
+              </h6>
+            </div>
+            <div id="collapseOne" class="collapse bg-secondary" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <a class="simple mb-16" href="https://www.bluebash.co/services/web-development">Web App Development</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/services/hire-top-dedicated-software-developers">Hire Web App Developers</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/services/ui-ux">UI/UX Design</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/services/our-expertise">Our Expertise</a>
+                  <a class="text-primary link text-center border-top pt-16" href="https://www.bluebash.co/services">See All
+                  Services
+                  <span><i class="fas fa-angle-right ml-8"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-32">
+            <div class="card-header p-0" id="headingTwo">
+              <h6 class="mb-0">
+                <button class="btn btn-link mb-0 align-items-center btn-block text-left h6 collapsed d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <span class="h6 mb-0"> Technologies</span> <span><i class="fas mb-0 h6"></i></span>
+                </button>
+              </h6>
+            </div>
+            <div id="collapseTwo" class="collapse  bg-secondary" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <a class="caps mb-16" href="https://www.bluebash.co/technologies">FRONT END</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/technologies">Back-end</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/technologies">Cross Platform</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/technologies">Database</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/technologies">Hosting &amp; DevOps</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/technologies">UI/UX Tools</a>
+                  <a class="text-primary link text-center border-top pt-16" href="https://www.bluebash.co/technologies">See All
+                  Technologies
+                  <span class="fas fa-angle-right ml-8"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-32">
+            <div class="card-header p-0" id="headingThree">
+              <h6 class="mb-0">
+                <button class="btn btn-link h6 btn-block mb-0 align-items-center text-left collapsed d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <span class="h6 mb-0"> Solutions</span> <span> <i class="fas mb-0 h6"></i></span>
+                </button>
+              </h6>
+            </div>
+            <div id="collapseThree" class="collapse  bg-secondary" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#speed-optimization">Speed Optimization</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#website-visibility">Website Visibility</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#e-commerce-sofware-solution">e-Commerce Software Solution</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#crm">CRM Software Solution</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#ehr">EHR Software Solution</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#erp">ERP Software Solution</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#b2b">B2B Software Solution</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/solutions#b2c">B2C Software Solution</a>
+                  <a class="text-primary link text-center border-top pt-16" href="https://www.bluebash.co/solutions">See All solutions
+                  <span><i class="fas fa-angle-right ml-8"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-32">
+            <div class="card-header p-0" id="headingfour">
+              <h6 class="mb-0">
+                <button class="btn btn-link h6 btn-block mb-0 align-items-center text-left collapsed d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                <span class="h6 mb-0"> Industries</span> <span><i class="fas mb-0 h6"></i></span>
+                </button>
+              </h6>
+            </div>
+            <div id="collapsefour" class="collapse  bg-secondary" aria-labelledby="headingfour" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#real-estate">Real Estate</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#Fintech-and-banking">Fintech &amp; Banking</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#health-care-fitness">Health Care &amp; Fitness</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#social-marketing">Social Marketing</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#travel-tourism">Travel &amp; Tourism</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#eduaction-e-learning">Education &amp; e-Learning</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#e-commerce-retail">eCommerce &amp; Retail</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/industries#sports-entertainment">Sports &amp; Entertainment</a>
+                  <a class="text-primary link text-center border-top pt-16" href="https://www.bluebash.co/industries">We work for all industries. See details
+                  <span><i class="fas fa-angle-right ml-8"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-32">
+            <div class="card-header p-0" id="headingsix">
+              <h6 class="mb-0">
+                <button class="btn btn-link align-items-center mb-0 h6 btn-block text-left collapsed d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                <span class="h6 mb-0">Case Studies</span> <span> <i class="fas mb-0 h6"></i></span>
+                </button>
+              </h6>
+            </div>
+            <div id="collapsesix" class="collapse bg-secondary" aria-labelledby="headingsix" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <p class="font-weight-bold text-dark mb-8">Websites</p>
+                  <small class="text-black">Explore IT solutions delivered to startups and enterprises to </small>
+                  <p class="font-weight-bold text-dark mb-8 mt-16">UI/UX Design</p>
+                  <small class="text-black">Explore design solutions delivered to startups and enterprises.</small>
+                  <p class="font-weight-bold text-dark mt-16">Catch us on</p>
+                  <div class="">
+                    <a href="https://dribbble.com/bluebash" itemprop="sameAs" target="_blank">
+                    <img class="lazy" alt="" src="./ROR Development Consulting Solutions_ BlueBash_files/dribbble-icon-4a0e56ead463a0a5fd25b6ebb4839d84.svg">
+                    <span class="pl-8">Dribble</span>
+                    </a>
+                  </div>
+                  <div class="mt-16">
+                    <a href="https://www.behance.net/bluebash" itemprop="sameAs" target="_blank">
+                    <img class="lazy" alt="" src="./ROR Development Consulting Solutions_ BlueBash_files/behance-icon-e8c2d7845b84a107baeabb4e53c400f2.svg">
+                    <span class="pl-8">Behance</span>
+                    </a>
+                  </div>
+                  <a class="text-primary link text-center border-top pt-16" href="https://www.bluebash.co/case-studies">See All Case Studies
+                  <span><i class="fas fa-angle-right ml-8"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-32">
+            <div class="card-header p-0" id="headingfive">
+              <h6 class="mb-0">
+                <button class="btn btn-link btn-block mb-0 align-items-center h6 text-left collapsed d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                <span class="h6 mb-0">Company</span> <span><i class="fas h6 mb-0"></i></span>
+                </button>
+              </h6>
+            </div>
+            <div id="collapsefive" class="collapse bg-secondary" aria-labelledby="headingfive" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <a class="simple mb-16" href="https://www.bluebash.co/company/about-us">About Us</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/company/our-process">Our Process</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/company/events">Events</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/blog">Blogs</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/company/career">Career<span class="text-primary bg-primaryten p-8 ml-8">we are hiring</span></a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/company/contact-us">Contact</a>
+                  <a class="simple mb-16" href="https://www.bluebash.co/company/media-kit">Media Kit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light p-16 border-bottom ">
+  <a class="navbar-brand" href="https://www.bluebash.co/">
+    <img alt="Bluebash Ruby on Rails Development Company" src="./ROR Development Consulting Solutions_ BlueBash_files/logo-full.svg">
+  </a>
+  <meta id="organizationName" itemprop="name" content="Bluebash Consulting Pvt. Ltd.">
+  <!-- Global Value -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item position-static nav-item dropdown  mr-xl-16 mr-lg-0">
+        <a class="nav-link font-weight-bold  text-dark  d-flex justify-content-between" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://www.bluebash.co/services/ruby-on-rails-development-company#"><span>Services </span><span class="ml-lg-8 ml-xl-8"><i class="fas fa-angle-down torotate"></i></span></a>
+        <div class="dropdown-menu header-nav-item mt-0 border-top shadow position-absolute w-100" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class="text-decoration-none dropdown-item font-weight-bold  pb-24 caps text-uppercase" href="https://www.bluebash.co/services/web-and-mobile-app-development-company"><span itemprop="serviceType">Web and Mobile Development</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/ruby-on-rails-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Ruby on Rails Development</span></span></a>
+                <a class="dropdown-item pb-8 simple" href="https://www.bluebash.co/services/react-js-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">React JS
+                Development</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/spree-ecommerce-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Spree e-Commerce Development</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/react-native-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">React Native Development</span></span></a>
+                </span>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24 simplepara text-uppercase" href="https://www.bluebash.co/services/hire-top-dedicated-software-developers"><span itemprop="serviceType">Hire Dedicated Developers</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/hire-ruby-on-rails-developers" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Hire RoR
+                Developers</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/hire-reactjs-developers" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Hire React JS Developers</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/hire-front-end-developers" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">
+                Hire HTML/CSS
+                Developers</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/hire-QA-tester" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Hire QA /
+                Tester</span></span></a>
+                </span>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24 text-uppercase caps" href="https://www.bluebash.co/services/ui-ux"><span itemprop="serviceType">UI/UX Design</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/user-experience-design" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">User Experience Design</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/user-interface-design" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">User Interface Design</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/user-research-insights" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">User Research &amp; Insights</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/ux-audit-strategy" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">UX Audit &amp; Strategy</span></span></a>
+                </span>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24 caps text-uppercase" href="https://www.bluebash.co/services/our-expertise"><span itemprop="serviceType">Our
+                expertise</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/software-development-for-startup" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Startup &amp; Enterprise Software Dev</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/saas-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">SaaS Application Development</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/progressive-web-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Progressive Web App Development</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/services/custom-web-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Custom Web Development</span></span></a>
+                </span>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <hr>
+          <div class="container justify-content-center">
+            <a class="text-primary text-decoration-none link" href="https://www.bluebash.co/services"> See All Services</a>
+            <span> <i class="fas fa-angle-right text-primary ml-8"></i></span>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item position-static nav-item dropdown mr-xl-16 mr-lg-0">
+        <a class="nav-link  font-weight-bold text-dark d-flex justify-content-between" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://www.bluebash.co/services/ruby-on-rails-development-company#"> <span>Technologies</span> <span class="ml-lg-8 ml-xl-8"><i class="fas fa-angle-down torotate"></i></span></a>
+        <div class="dropdown-menu header-nav-item mt-0 border-top position-absolute shadow  w-100" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-2 col-md-2 col-sm-3 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class="text-decoration-none dropdown-item font-weight-bold pb-24 caps text-uppercase" href="https://www.bluebash.co/technologies#Front-end"><span itemprop="serviceType">Front-end</span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#React" itemprop="offers"><span itemprop="name">React
+                JS</span></a>
+              </div>
+              <div class="col-xl-2 col-md-2 col-sm-3 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24 simplepara caps" href="https://www.bluebash.co/technologies"><span itemprop="serviceType">FULL-STACK</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#ror" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Ruby on
+                Rails</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#ror" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Phoenix</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#ror" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"> <span itemprop="name">Node JS</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Electron" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Next.js</span></span></a>
+                </span>
+              </div>
+              <div class="col-xl-2 col-md-2 col-sm-3 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class="dropdown-item font-weight-bold text-uppercase caps pb-24" href="https://www.bluebash.co/technologies#cross-platform"><span itemprop="serviceType">Cross Platform</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Electron" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">React Native</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Electron" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Electron</span>
+                </span></a>
+                </span>
+              </div>
+              <div class="col-xl-2 col-md-2 col-sm-3 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24  simplepara" href="https://www.bluebash.co/technologies#database"><span itemprop="serviceType">DATABASE</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Mongo" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">PostgresSQL</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Mongo" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">MongoDB</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#MySQL" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Neo4j</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Mongo" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Elastic search</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#MySQL" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Redis</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#MySQL" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">MySQL</span></span></a>
+                </span>
+              </div>
+              <div class="col-xl-2 col-md-2 col-sm-3 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24 text-uppercase caps" href="https://www.bluebash.co/technologies#hosting"><span itemprop="serviceType">Hosting &amp; DevOps</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#AWS" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">
+                Heroku</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#AWS" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">AWS</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#AWS" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Digital</span>
+                Ocean</span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Docker" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Docker</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Docker" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Puppet</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Docker" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">CircleCI</span></span></a>
+                </span>
+              </div>
+              <div class="col-xl-2 col-md-2 col-sm-3 col-12" itemscope="" itemtype="https://schema.org/Service">
+                <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                <a class=" dropdown-item font-weight-bold pb-24 caps text-uppercase" href="https://www.bluebash.co/technologies#ui/ux"><span itemprop="serviceType">UI/UX TOOLS</span></a>
+                <span itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Figma" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Sketch</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Figma" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Figma</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Figma" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Balasamiq</span></span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Zeplin" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Zeplin</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Zeplin" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Adobe XD</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Zeplin" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">
+                Adobe Illustrator</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Adobe" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Adobe Photoshop</span>
+                </span></a>
+                <a class=" dropdown-item pb-8 simple" href="https://www.bluebash.co/technologies#Adobe" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">
+                Invision Studio</span>
+                </span></a>
+                </span>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <hr>
+          <div class="container justify-content-center">
+            <a class="text-primary text-decoration-none link" href="https://www.bluebash.co/technologies"> See All Technologies</a>
+            <span> <i class="fas fa-angle-right text-primary ml-8"></i></span>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item position-static nav-item dropdown mr-xl-16 mr-lg-0" itemscope="" itemtype="https://schema.org/Service">
+        <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <a class="nav-link  font-weight-bold text-dark d-flex justify-content-between " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://www.bluebash.co/services/ruby-on-rails-development-company#"> <span itemprop="serviceType">Solutions</span><span><i class="fas fa-angle-down ml-lg-8 ml-xl-8 torotate"></i></span></a>
+        <div class="dropdown-menu header-nav-item mt-0 border-top position-absolute shadow w-100" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row" itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item font-weight-bold pb-8 caps  pl-0" href="https://www.bluebash.co/solutions/website-speed-optimization-solutions" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Speed
+                Optimization</span></span></a>
+                <small class="small">Get high page speed, low page load times, efficient delivery of media-rich content. </small>
+                <a class=" dropdown-item pb-8 font-weight-bold  caps pl-0 mt-32" href="https://www.bluebash.co/solutions/electronic-health-record-ehr-software-solutions" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">EHR Software Solution</span>
+                </span>
+                </a>
+                <small class="small">Systematize patient health info. In a digital format &amp; share among authorized users.</small>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item font-weight-bold pb-8 pl-0" href="https://www.bluebash.co/solutions#website-visibility" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer"><span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Website
+                Visibility</span></span></a>
+                <small class="small">Bring your website on top in search engine results and maximize customer reach.</small>
+                <a class=" dropdown-item pb-8 font-weight-bold  caps pl-0 mt-32" href="https://www.bluebash.co/solutions/erp-software-solutions" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer"><span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">ERP
+                Software Solution</span></span></a>
+                <small class="small">Empower teams with cloud ERP software and manage day-to-day business activities.</small>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item font-weight-bold  pl-0" href="https://www.bluebash.co/solutions/ecommerce-applications-solutions" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer"><span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">e-Commerce Software
+                Solution</span></span></a>
+                <small class="small">Get an online presence and follow the trend of selling products globally.</small>
+                <a class=" dropdown-item pb-8 font-weight-bold caps pl-0 mt-32" href="https://www.bluebash.co/solutions/b2b-multi-vendor-marketplace-solutions" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer"><span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"></span><span itemprop="name">B2B Software Solution</span>
+                </a>
+                <small class="small">Create products and services geared toward other businesses and scale customer base.</small>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item font-weight-bold pb-8  caps pl-0" href="https://www.bluebash.co/solutions/custom-crm-development-services" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer"><span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"></span><span itemprop="name">CRM Software Solution</span>
+                </a>
+                <small class="small">Manage your own interactions with your past, current and potential customers.</small>
+                <a class=" dropdown-item pb-8 font-weight-bold  caps pl-0 mt-32" href="https://www.bluebash.co/solutions/b2c-marketplace-software-solutions" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer"><span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"></span><span itemprop="name">B2C Software Solution</span>
+                </a>
+                <small class="small">Get transaction of goods or services within the digital sphere and grow your business.</small>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <hr>
+          <div class="container justify-content-center">
+            <a class="text-primary link" href="https://www.bluebash.co/solutions"> See All Solutions</a>
+            <span> <i class="fas fa-angle-right text-primary ml-8"></i></span>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item position-static nav-item dropdown mr-xl-16 mr-lg-0" itemscope="" itemtype="https://schema.org/Service">
+        <span itemprop="provider" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <a class="nav-link font-weight-bold  text-dark d-flex justify-content-between" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://www.bluebash.co/services/ruby-on-rails-development-company#"> <span itemprop="serviceType">Industries</span> <span><i class="fas fa-angle-down ml-lg-8 ml-xl-8 torotate"></i></span></a>
+        <div class="dropdown-menu header-nav-item mt-0 border-top shadow  position-absolute w-100" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row" itemprop="hasOfferCatalog" itemscope="" itemtype="https://schema.org/OfferCatalog">
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item  pb-8 pl-0 caps " href="https://www.bluebash.co/industries/real-estate-software-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Real Estate</span></span></a>
+                <small class="small text-justify ">Custom real estate management software for real estate agents, customers, and partners.</small>
+                <a class=" dropdown-item pb-8 caps mt-32 pl-0 " href="https://www.bluebash.co/industries/ecommerce-web-design-and-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">eCommerce &amp; Retail</span></span></a>
+                <small class="small text-justify"> We provide a smart, effective &amp; economical way to build your eCommerce store.
+                </small>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item  caps pb-8 pl-0" href="https://www.bluebash.co/industries/banking-and-finance-software-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Fintech &amp; Banking</span></span></a>
+                <small class="small"> FinTech solutions to financial organizations, including banks, credit unions, &amp; enterprises.
+                </small>
+                <a class=" dropdown-item pb-8 mt-32 caps pl-0" href="https://www.bluebash.co/solutions/sports-entertainment-software-development" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Sports &amp;
+                Entertainment</span></span></a>
+                <small class="small"> Redefining customer experience for digitally-savvy consumers of new age media.</small>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item caps pb-8 pl-0" href="https://www.bluebash.co/industries/healthcare-and-fitness-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Health Care &amp; Fitness</span></span></a>
+                <small class="small"> We cover every aspect of a practice, whether diagnostics, patient care or administration.</small>
+                <a class="text-decoration-none dropdown-item caps pb-8 mt-32 pl-0" href="https://www.bluebash.co/industries/social-media-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Social Marketing</span></span></a>
+                <small class="small"> Reach your audience effectively. Turn social networks into a customer acquisition tools.
+                </small>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <a class="text-decoration-none dropdown-item caps pb-8 pl-0" href="https://www.bluebash.co/industries/tour-and-travel-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Travel &amp; Tourism</span></span></a>
+                <small class="small">Deal with booking flights, cars, hotels, accommodations &amp; travel partnerships.
+                </small>
+                <a class="text-decoration-none dropdown-item caps pb-8 mt-32 pl-0" href="https://www.bluebash.co/industries/education-and-e-learning-app-development-company" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Offer">
+                <span itemprop="itemOffered" itemscope="" itemtype="https://schema.org/Service"><span itemprop="name">Education &amp; e-Learning</span></span></a>
+                <small class="small"> Achieve outcomes, automate tasks, enhance learning experience across platforms.</small>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <hr>
+          <div class="container justify-content-center ">
+            <a class="text-primary link" href="https://www.bluebash.co/industries">We work for all industries. See details
+            </a>
+            <span> <i class="fas fa-angle-right text-primary ml-8"></i></span>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item position-static nav-item dropdown mr-xl-16 mr-lg-0">
+        <a class="nav-link  font-weight-bold text-dark d-flex justify-content-between" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://www.bluebash.co/services/ruby-on-rails-development-company#"> <span class="text-nowrap">Case Studies</span> <span><i class="fas fa-angle-down ml-lg-8 ml-xl-8 torotate"></i></span></a>
+        <div class="dropdown-menu header-nav-item mt-0 border-top shadow  position-absolute w-100" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-3 mt-32 col-md-3 col-sm-6 col-12">
+                <div class="mb-32">
+                  <a class="font-weight-bold caps" href="https://www.bluebash.co/case-studies"> FEATURED CASE STUDIES</a>
+                </div>
+                <div class="card " itemscope="" itemtype="https://schema.org/Article">
+                  <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <img class="card-img-top imgtop" alt="itrust" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/itrust-screen-img-small-69a8f46d6c0108d86fa6606be5aa6750.png">
+                  <div class="card-body shadow">
+                    <small class="text-Whatever text-dark digital text-uppercase product you can dream, we’ll make a reality.
+                      uppercase font-weight-bold" itemprop="genre"> HealthCare &amp; Fitness</small>
+                    <h6 class="card-title" itemprop="headline">iTrust Cloud EHR</h6>
+                    <p class="text-light-black mb-40 mt-8" itemprop="description">A product by doctor for doctor’s. Optometry cloud EHR &amp; practice management software.</p>
+                    <a class="text-primary link mt-80" href="https://www.bluebash.co/case-studies/itrust" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 mt-32 col-md-3 col-sm-6 col-12 pt-56">
+                <div class="card" itemscope="" itemtype="https://schema.org/Article">
+                  <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <img class="card-img-top imgto" alt="sebamed" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/sebamed-screen-img-small-52c6a1831f0dd70a8ac21bb2b0c9d1d3.png">
+                  <div class="card-body px-16 shadow">
+                    <small class="text-uppercase text-dark font-weight-bold" itemprop="genre">e-commerce &amp; retail</small>
+                    <h6 class="card-title" itemprop="headline">SebamedUSA</h6>
+                    <p class="text-light-black mb-40 mt-8" itemprop="description">Online one stop solution to buy evolutionary skincare product sebamed from SebamedUSA.com</p>
+                    <a class="text-primary link " href="https://www.bluebash.co/case-studies/sebamedusa" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 mt-32 col-md-3 col-sm-6 col-12 pt-56">
+                <div class="card" itemscope="" itemtype="https://schema.org/Article">
+                  <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <img class="card-img-top imgt" alt="crypto-store" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/cryptstore-screen-img-small-5e65690eeea5b6f45c9be0ffb101eded.png">
+                  <div class="card-body shadow">
+                    <small class="text-uppercase text-dark font-weight-bold" itemprop="genre">sports &amp; entertainment</small>
+                    <h6 class="card-title" itemprop="headline">Crypto Store</h6>
+                    <p class="text-light-black mb-40  mt-8" itemprop="description">Digitally making cryptocurrency convenient. As easy as buying milk</p>
+                    <a class="text-primary link" href="https://www.bluebash.co/case-studies/crypto-store" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12">
+                <div class="mt-32">
+                  <a class="font-weight-bold text-uppercase caps ml-16" href="https://www.bluebash.co/case-studies">Our Portfolio</a>
+                </div>
+                <a class="text-decoration-none dropdown-item font-weight-bold caps mt-16 pb-8" href="https://www.bluebash.co/solutions">Websites</a>
+                <p class="pb-32 pl-24">Explore IT solutions delivered to startups and enterprises to </p>
+                <a class=" dropdown-item pb-8 font-weight-bold caps" href="https://www.bluebash.co/services/ui-ux">UI/UX Design</a>
+                <p class="pl-24">Explore design solutions delivered to startups and enterprises.</p>
+                <p class="pl-24">Catch us on</p>
+                <div class="d-inline" itemscope="" itemtype="https://schema.org/Organization">
+                  <div class="pl-24">
+                    <a href="https://dribbble.com/bluebash" itemprop="sameAs" target="_blank">
+                    <img class="lazy" alt=" dribbble-icon" src="./ROR Development Consulting Solutions_ BlueBash_files/dribbble-icon-4a0e56ead463a0a5fd25b6ebb4839d84.svg">
+                    <span class="pl-8">Dribble</span>
+                    </a>
+                  </div>
+                  <div class="pt-8 pl-24">
+                    <a href="https://www.behance.net/bluebash" itemprop="sameAs" target="_blank">
+                    <img class="lazy" alt="behance-icon" src="./ROR Development Consulting Solutions_ BlueBash_files/behance-icon-e8c2d7845b84a107baeabb4e53c400f2.svg">
+                    <span class="pl-8">Behance</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="container justify-content-center ">
+            <a class="text-primary link" href="https://www.bluebash.co/case-studies">See All Case Studies
+            </a>
+            <span> <i class="fas fa-angle-right text-primary ml-8"></i></span>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item  mr-xl-16 mr-lg-0">
+        <a class="nav-link font-weight-bold  d-flex justify-content-between text-dark " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://www.bluebash.co/services/ruby-on-rails-development-company#"> <span>Company</span> <span><i class="fas fa-angle-down ml-lg-8 ml-xl-8 torotate"></i></span></a>
+        <div class="dropdown-menu header-nav-item border-top mt-0 shadow  position-absolute w-100" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12 mt-32">
+                <a class="font-weight-bold text-decoration-none caps " href="https://www.bluebash.co/blog">RECENT BLOG POST</a>
+                <div class="card-body mt-32 border" itemscope="" itemtype="https://schema.org/Article">
+                  <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <div class="imagecover">
+                    <img class="img-fluid pb-24 lazy image-size" alt="blog" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/next.js.jpg">
+                  </div>
+                  <h6 class="card-text pb-40 " itemprop="headline">Next.Js: Introduction, Benefits, and Pitfalls.
+                  </h6>
+                  <a class="text-primary text-decoration-none link" href="https://www.bluebash.co/blog/next-js-introduction-benefits-and-pitfalls/" itemprop="sameAs url">Read Post</a>
+                  <span><i class="fas fa-angle-right text-primary ml-8 link"></i></span>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12 mt-80 pt-5  ">
+                <div class="card-body border" itemscope="" itemtype="https://schema.org/Article">
+                  <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <div class="imagecover">
+                    <img class="img-fluid pb-24 lazy image-size" alt="blog" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/elixir1.png">
+                  </div>
+                  <h6 class="card-text pb-40" itemprop="headline">Elixir: Functional programming continues to rise in 2020.
+                  </h6>
+                  <a class="text-primary text-decoration-none link" href="https://www.bluebash.co/blog/elixir-functional-programming-continues-to-rise-in-2020/" itemprop="sameAs url">Read Post</a>
+                  <span><i class="fas fa-angle-right text-primary ml-8 link"></i></span>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12  mt-80 pt-5">
+                <div class="card-body border" itemscope="" itemtype="https://schema.org/Article">
+                  <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+                  <div class="imagecover">
+                    <img class="img-fluid pb-24 lazy image-size" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/photo-1563192114-10457fe93b23">
+                  </div>
+                  <h6 class="card-text pb-40" itemprop="headline">Virtual Reality and Applications of virtual reality - I.
+                  </h6>
+                  <a class="text-primary text-decoration-none link pb-0" href="https://www.bluebash.co/blog/virtual-reality-applications/" itemprop="sameAs url">Read Post</a>
+                  <span> <i class="fas fa-angle-right text-primary ml-8 link"></i></span>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3 col-sm-6 col-12 mt-32">
+                <div class="d-flex flex-column">
+                  <span class="font-weight-bold pb-32 text-decoration-none caps">COMPANY</span>
+                  <a class="mb-16 text-decoration-none  text-dark font-weight-bold" href="https://www.bluebash.co/company/about-us"> About Us</a>
+                  <a class="mb-16 text-decoration-none  text-dark font-weight-bold" href="https://www.bluebash.co/company/our-process">Our
+                  Process</a>
+                  <a class="mb-16  text-decoration-none text-dark font-weight-bold" href="https://www.bluebash.co/company/events">Events</a>
+                  <a class="mb-16  text-decoration-none text-dark font-weight-bold" href="https://www.bluebash.co/blog">Blogs</a>
+                  <div class="d-flex">
+                    <a class="text-decoration-none font-weight-bold text-dark" href="https://www.bluebash.co/company/career"> Career</a>
+                    <span class="ml-8 text-primary bg-primaryten">we are hiring!</span>
+                  </div>
+                  <a class="mb-16 mt-16  font-weight-bold text-decoration-none simple  text-dark" href="https://www.bluebash.co/company/contact-us">
+                  Contact</a>
+                  <a class="text-dark font-weight-bold" href="https://www.bluebash.co/company/media-kit"> Media Kit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex">
+    <button class="navbar-toggler order-md-1 ml-xl-0 ml-md-16 " type="button" data-toggle="modal" data-target="#exampleModal" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars text-primary p-8"></i></span>
+    </button>
+    <div class="btn btn-primary d-none d-md-block  text-uppercase">
+      <a class="text-white" href="https://www.bluebash.co/company/contact-us">free quote</a>
+    </div>
+  </div>
+</nav>
+    <main>
+      
+
+<div id="page_content">
+    <div class="py-md-80 py-40">
+  <div class="container">
+    <div class="row">
+      <div class=" col-lg-5 col-12 mb-40">
+        <p class="text-uppercase mb-8 font-weight-bold font-size-14">
+          Trusted by top brands across the globe
+        </p>
+        <h1 class="head2 mb-16">
+        Best Ruby On Rails Development Company
+        </h1>
+        <p class="lead mb-32">
+        At BlueBash we value your time, hence our team uses the latest RoR versions and related technology to create sophisticated web applications. We hold the extensive experience and follow a rigid quality control to help you get a scalable solution crafted only for your business.
+        </p>
+        <h2 class="display-5 mb-16 font-size-24">
+          What’s next:
+        </h2>
+        <div class="d-flex mb-16">
+          <div><i class="fas fa-check-circle"></i></div>
+          <p class="ml-8 h6">Send us your requirement</p>
+        </div>
+        <div class="d-flex mb-16">
+          <div><i class="fas fa-check-circle"></i></div>
+          <p class="ml-8 h6">Sign NDA</p>
+        </div>
+        <div class="d-flex mb-16">
+          <div><i class="fas fa-check-circle"></i></div>
+          <p class="ml-8 h6">Analyzing your requirement</p>
+        </div>
+        <div class="d-flex mb-16">
+          <div><i class="fas fa-check-circle"></i></div>
+          <p class="ml-8 h6">Get your estimation</p>
+        </div>
+        <div class="row mt-40 ">
+          <div class="col-1">
+            <img alt="bluebash Clutch account" src="./ROR Development Consulting Solutions_ BlueBash_files/Clutch Profile-bbdde73d55e4348c7e39424275a3ff1e.svg">
+          </div>
+          <div class="offset-1 col-1">
+            <img alt="bluebash Goodfirms account" src="./ROR Development Consulting Solutions_ BlueBash_files/Goodfirms Profile-311fea48d5e48c4700308253254a74a1.svg">
+          </div>
+        </div>
+      </div>
+      <div class="offset-lg-1 col-lg-6 col-12 mb-40">
+        <div class="card cardbox-property">
+          <div class="card-body">
+            <h3 class="head4 mb-40 font-size-24">
+              We’re excited to start soon!
+            </h3>
+            
+            <form class="new_contact" id="new_contact" enctype="multipart/form-data" action="https://www.bluebash.co/contacts" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="wfCxSmcZAKQc0V3lXJKKR9VpzujfW5OKewi1LuQZaRr1CniZr8rQGBFTV3Nv93eU3vkvJVO9WB2gq6DSfWz0Mg==">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="mb-24">
+                    <label class="label" for="contact_first_name">First Name</label>
+                    <input class="form-control" placeholder="John" required="required" type="text" name="contact[first_name]" id="contact_first_name">
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-24">
+                    <label class="label" for="contact_last_name">Last Name</label>
+                    <input class="form-control" placeholder="Doe" required="required" type="text" name="contact[last_name]" id="contact_last_name">
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-24">
+                    <label class="label" for="contact_email">Email Address</label>
+                    <input class="form-control" placeholder="john@gmail.com" required="required" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" type="text" name="contact[email]" id="contact_email">
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-24">
+                    <label class="label" for="contact_phone">Phone Number</label>
+                    <input class="form-control" placeholder="+1 4455667788" required="required" maxlength="11" pattern="\d{0,11}" size="11" type="text" name="contact[phone]" id="contact_phone">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="label" for="contact_document">Attach Document (optional)</label> <br>
+                  <button class="btn btn-outline-primary text-uppercase doc">Upload Your file <i class="fas fa-upload"></i>
+                    <input title="Upload your file" class="fileinput" id="contact_document" type="file" name="contact[document]">
+                  </button>
+                  <label for="contact_document" id="file_name">FileName.pdf </label>
+                </div>
+                <div class="col-12 mt-24">
+                  <div class="form-group">
+                    <label class="mb-5 mt-24" for="contact_description">Short Project Description (optional)</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="10" placeholder="I want to build an e-commerce mobile app. I’ve wireframes to start with." name="contact[description]"></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="d-flex flex-md-row flex-column justify-content-between mt-24">
+                    <span class="img-fluid"><script src="./ROR Development Consulting Solutions_ BlueBash_files/api.js(1).download" async="" defer=""></script>
+<div data-sitekey="6LdQrrQUAAAAANzDG2J1d4_o7KAmiboYsaB76PEH" class="g-recaptcha "><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="./ROR Development Consulting Solutions_ BlueBash_files/anchor.html" width="304" height="78" role="presentation" name="a-zgkb82tc22yc" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+          <noscript>
+            <div>
+              <div style="width: 302px; height: 422px; position: relative;">
+                <div style="width: 302px; height: 422px; position: absolute;">
+                  <iframe
+                    src="https://www.recaptcha.net/recaptcha/api/fallback?k=6LdQrrQUAAAAANzDG2J1d4_o7KAmiboYsaB76PEH"
+                    name="ReCAPTCHA"
+                    style="width: 302px; height: 422px; border-style: none; border: 0; overflow: hidden;">
+                  </iframe>
+                </div>
+              </div>
+              <div style="width: 300px; height: 60px; border-style: none;
+                bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                  class="g-recaptcha-response"
+                  style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                  margin: 10px 25px; padding: 0px; resize: none;">
+                </textarea>
+              </div>
+            </div>
+          </noscript>
+ </span>
+                    <div class="mt-md-0 mt-24 text-md-right text-center">
+                      <input type="submit" name="commit" value="Submit" class="btn btn-primary text-uppercase" data-disable-with="Submit">
+                    </div>
+                  </div>
+                </div>
+              </div>
+</form>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="py-40 bg-secondary">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-12">
+        <p class="text-uppercase mb-8 font-weight-bold font-size-14">
+          Top rated for ror development services
+        </p>
+        <p class="head4 font-size-24 font-weight-bold">
+        BlueBash holds a skilled team of RoR Developers, who have the comprehensive experience to successfully meet your expectations, consequently helping you to prosper in your venture with the help of an experienced team.
+        </p>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6 mt-lg-0 mt-40">
+      <a href="https://clutch.co/profile/bluebash-consulting">
+        <div class="card border">
+          <div class="card-body text-center">
+            <p class="head2 font-size-32 font-weight-700">
+              5 / 5
+            </p>
+            <p>Rating</p>
+            <img alt="bluebash Clutch account" class="img-fluid" title="clutch" src="./ROR Development Consulting Solutions_ BlueBash_files/clutch-logo-361c858a8217003e461e76f2625aea89.svg">
+          </div>
+        </div>
+</a>      </div>
+      <div class="col-lg-2 col-md-4 col-6 mt-lg-0 mt-40">
+      <a href="https://www.goodfirms.co/company/bluebash-consulting-private-limited">
+        <div class="card border">
+          <div class="card-body text-center">
+            <p class="head2 font-size-32 font-weight-700">
+              5 / 5
+            </p>
+            <p>Rating</p>
+            <img alt="bluebash goodfirm account" class="img-fluid" title="Goodfirms" src="./ROR Development Consulting Solutions_ BlueBash_files/goodfirms-logo-45c7443fbfea3209574a7f5c8484a0c5.svg">
+          </div>
+        </div>
+</a>      </div>
+    </div>
+  </div>
+</div>
+<div class="py-md-80 py-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h3 class="head2 font-size-32">
+        Why Choose Our RoR Development Service
+        </h3>
+        <p class="lead">
+        Skills matter. But when it comes to making decisions, experience is what we can truly rely on. Over many years of web software and Rails application development, we’ve built up competencies that are hard to replicate.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="High level, Secured and Robust Websites" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-secure-1-5156291b0297b2233217c4d64f6916b0.svg">
+            <p class="mb-8 h6">High level, Secured and Robust Websites</p>
+            <p>We ensure to provide a high level of security and believe in delivering robust &amp;
+              scalable solutions in your RoR web application that helps to build an error-free web app.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Bug-Free and Timely Project Deliveries" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-bug-free-1-b045cd270c1d63d39103ac9c7f88744c.svg">
+            <p class="mb-8 h6">Bug-Free and Timely Project Deliveries</p>
+            <p>Our experts build a bug-free app, Ruby on Rails web development has its own benefits &amp; it also helps
+              to timely deliver the product by saving bug fixing efforts.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Constant Client-Reporting" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-reporting-1-8d16018a1bb2750b43002e3361b22380.svg">
+            <p class="mb-8 h6">Constant Client-Reporting</p>
+            <p>It is another step in our product development process, we are in constant touch with the client and
+              ensure daily reporting so that it helps them in keeping track of the software development progress.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Customized Enterprise Applications" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-enterprise-app-1-5f1797bdfe4f16e0c1b2044c45d62bcd.svg">
+            <p class="mb-8 h6">Customized Enterprise Applications</p>
+            <p>We also specialize in custom Ruby on Rails application development that allows us to customize your
+              web application starting from the development process by understanding the client’s requirements and
+              structuring the final delivery of the web application. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Long-Term Focused Development" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-focused-dev-1-908db1d624d1ecda382edd68587969f0.svg">
+            <p class="mb-8 h6">Long-Term Focused Development</p>
+            <p>Our Rails development vision is based on long term scalability for the web application. Our experts
+              build a product that can add value to your business in the near future by adding many other new
+              features as per the requirement. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="After Sales Support" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-sales-support-head-30d0cff870a1bb3e87c977c91ad185d7.svg">
+            <p class="mb-8 h6">After Sales Support</p>
+            <p>
+            We have a dedicated support team that ensures your business never faces any downtime and runs
+            smoothly round the clock hence ensuring high-performance applications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+    </div>
+  </div>
+</div>
+<div class="py-md-80 py-40 bg-secondary">
+  <div class="container">
+    <h3 class="head2 font-size-32">Our Ruby On Rails Case Studies</h3>
+    <p class="lead">
+      Trusted by many entrepreneurs around the globe.
+    </p>
+    <div class="row mt-40 pb-40">
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 ">
+    <div class="card" itemscope="" itemtype="https://schema.org/Article">
+      <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <img alt="itrust-screen-img-small" class="card-img-top imgtop" src="./ROR Development Consulting Solutions_ BlueBash_files/itrust-screen-img-small-69a8f46d6c0108d86fa6606be5aa6750.png">
+      <div class="card-body shadow">
+        <small class="text-Whatever text-dark digital text-uppercase product you can dream, we’ll make a reality.
+          uppercase font-weight-bold" itemprop="genre"> HealthCare &amp; Fitness</small>
+        <p class="card-title h6" itemprop="headline">iTrust Cloud EHR</p>
+        <p class="text-light-black mb-40 mt-8" itemprop="description">A product by doctor for doctor’s. Optometry cloud EHR &amp; practice management software.</p>
+        <a class="text-primary link mt-80" href="https://www.bluebash.co/case-studies/itrust" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12  mt-xl-0 mt-md-0 mt-lg-0 mt-sm-0 mt-32 ">
+    <div class="card" itemscope="" itemtype="https://schema.org/Article">
+      <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <img alt="sebamed-screen-img-small" class="card-img-top imgto" src="./ROR Development Consulting Solutions_ BlueBash_files/sebamed-screen-img-small-52c6a1831f0dd70a8ac21bb2b0c9d1d3.png">
+      <div class="card-body px-16 shadow">
+        <small class="text-uppercase text-dark font-weight-bold" itemprop="genre">e-commerce &amp; retail</small>
+        <p class="card-title h6" itemprop="headline">SebamedUSA</p>
+        <p class="text-light-black mb-40 mt-8" itemprop="description">Online one stop solution to buy evolutionary skincare product sebamed from SebamedUSA.com</p>
+        <a class="text-primary link " href="https://www.bluebash.co/case-studies/sebamedusa" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mt-xl-0 mt-lg-0 mt-md-32 mt-32">
+    <div class="card" itemscope="" itemtype="https://schema.org/Article">
+      <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <img alt="cryptstore-screen-img-small" class="card-img-top imgt" src="./ROR Development Consulting Solutions_ BlueBash_files/cryptstore-screen-img-small-5e65690eeea5b6f45c9be0ffb101eded.png">
+      <div class="card-body shadow">
+        <small class="text-uppercase text-dark font-weight-bold" itemprop="genre">sports &amp; entertainment</small>
+        <p class="card-title h6" itemprop="headline">Crypto Store</p>
+        <p class="text-light-black mb-40  mt-8" itemprop="description">Digitally making cryptocurrency convenient. As easy as buying milk.</p>
+        <a class="text-primary link" href="https://www.bluebash.co/case-studies/crypto-store" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12  mt-xl-0 mt-md-32  mt-lg-0 mt-32 ">
+    <div class="card" itemscope="" itemtype="https://schema.org/Article">
+      <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+      <img alt="thedgl-screen-img-small" class="card-img-top imgg" src="./ROR Development Consulting Solutions_ BlueBash_files/thedgl-screen-img-small-bb9dc21534df0f427bcb7d6559106a04.png">
+      <div class="card-body shadow">
+        <small class="text-uppercase text-dark font-weight-bold" itemprop="genre">sports &amp; entertainment</small>
+        <p class="card-title h6" itemprop="headline">The DGL</p>
+        <p class="text-light-black mt-8 mb-40" itemprop="description">The digital gaming league platform to play among virtual teams.
+        </p>
+        <a class="text-primary link " href="https://www.bluebash.co/case-studies/thedgl" itemprop="sameAs url">Read Case Study <span class="fas fa-angle-right ml-8"></span></a>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="py-md-80 py-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h4 class="head2 font-size-32">Benefits of RoR</h4>
+        <p class="lead">Our development team brings to the table their extensive experience to define the business
+          architecture and ensures client deliveries in sync with business demands. We have great exposure in
+          managing the usability, intuitiveness and high customer engagement within your built product.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Performance" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-performance-b5de843f63fde6fd5ca1ad6f8aa762b8.svg">
+            <p class="mb-8 h6">Performance</p>
+            <p>Ruby on Rails development services are designed around simplicity and productivity, it makes you away
+              from all kinds of hassles that come in the development phase.ROR framework has the ability to solve
+              all the low performing application issues and provides you with the best output.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Productivity" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-productivity-877c053f6ffa5d266d4b4c0c2b39c8c7.svg">
+            <p class="mb-8 h6">Productivity</p>
+            <p>RoR is a concise language that assists you in understanding the development process and its features
+              in an easier way when combined with third-party libraries. Hence it is the most productive framework
+              that lets you develop more reliable and productive software. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Ruby is Flexible" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-ruby-6f27d292bd6b82502bb1f3c7fe55e458.svg">
+            <p class="mb-8 h6">Ruby is Flexible</p>
+            <p>Ruby on Rails web development allows developers to freely change, remove, and redefine essential
+              modules in the application, as ROR is the best framework that can easily and quickly make changes if
+              any need arises in the future.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Scalability" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-scalability-43092ca0b42ec8849a8cb8739db916f3.svg">
+            <p class="mb-8 h6">Scalability</p>
+            <p>Ruby on Rails development is designed in such a way that it provides scalable services and solutions
+              to meet the user needs and requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Budget-Friendly" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-budget-friendly-b6eb08155cdf203b636f7a90a6dcfbe0.svg">
+            <p class="mb-8 h6">Budget-Friendly</p>
+            <p>Ruby on Rails comes out to be the best cost-efficient framework to build your application. ROR
+              application development framework is absolutely free and easy to run on Linux.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card">
+          <div class="card-body pl-lg-0">
+            <img alt="Repository of Free Plugins" class="mb-16" src="./ROR Development Consulting Solutions_ BlueBash_files/custom-icon-repository-free-plugin-323309ea0db5de7d1050a5053abe2d52.svg">
+            <p class="mb-8 h6">Repository of Free Plugins</p>
+            <p>A large repository of free plugins is the considerable benefit offered by Ruby On Rails. It also
+              helps in customizing your website for all the business needs. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-secondary">
+  <div class="container py-md-80 py-40">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12s col-sm-12">
+        <img alt="hire-RoR-developers" class="img-fluid justify-content-center align-items-center" src="./ROR Development Consulting Solutions_ BlueBash_files/hire-RoR-developers-sec-img (1)-c7b136188fe1f3252a27000e2099fe68.svg">
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mt-40">
+        <h4 class="mb-16 head2 font-size-32">Hire Ruby On Rails Developers</h4>
+        <p class="mb-8 lead">Our Ruby on Rails developers is a team of experienced developers that cater to the high-end performing
+              applications to a diverse clientage. We have a comprehensive team of tech enthusiasts that have developed
+              and delivered more than 40 web applications. Hire the dedicated RoR developers for your project. With us
+              you are in good hands.
+        </p>
+        <div class="row">
+          <div class=" d-flex col-xl-4 col-lg-4 col-md-4 col-6 mt-40">
+            <div>
+              <img alt="icon-custom-full-time" class="img-fluid " src="./ROR Development Consulting Solutions_ BlueBash_files/icon-custom-full-time-e45ce54596d6c8a8c759ad212a6c1ce8.svg">
+            </div>
+            <div>
+              <p class="ml-8 h6">
+                <span> Full Time</span> 
+              </p>
+              <p class="ml-8">
+                <span>Hiring</span>
+              </p>
+            </div>
+          </div>
+          <div class=" d-flex col-xl-4 col-lg-4 col-md-4 col-6 mt-40">
+            <div>
+              <img alt="icon-custom-part-time." src="./ROR Development Consulting Solutions_ BlueBash_files/icon-custom-part-time-b9983b6b97f75bc646ad26c29b8c24f1.svg">
+            </div>
+            <div>
+              <p class="ml-8 h6">
+                <span>Part Time</span> 
+              </p>
+              <p class="ml-8">
+                <span>Hiring</span>
+              </p>
+            </div>
+          </div>
+          <div class=" d-flex col-xl-4 col-lg-4 col-md-4 col-12 mt-40 align-content-center  justify-content-center">
+            <div>
+              <img alt="icon-custom-hourly-time" src="./ROR Development Consulting Solutions_ BlueBash_files/icon-custom-part-time-b9983b6b97f75bc646ad26c29b8c24f1.svg">
+            </div>
+            <div>
+              <p class="ml-8 ">
+                <span>Hourly</span> 
+              </p>
+              <p class="ml-8">
+                <span>Hiring</span>
+              </p>
+            </div>
+          </div>
+          <a class="btn btn-outline-primary text-uppercase mt-40 ml-16" href="https://www.bluebash.co/company/contact-us">HIRE ROR DEVELOPERS<i class="fas fa-angle-right ml-16"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-warning py-md-80 py-40">
+  <h4 class="head2 text-white text-center mb-40 font-size-32">Ruby On Rails Software Development Company</h4>
+  <div class="text-center text-white">
+    <a class="btn btn-primary text-uppercase text-center" href="https://www.bluebash.co/company/contact-us">GET FREE CONSULTATION</a>
+    <p class="my-16 font-weight-bold">OR</p>
+    <!-- <span> <i class="fab fa-skype mr-8"></i> live:manager_bluebash</span> -->
+    <a class="font-weight-bold text-white text-decoration-none" href="https://join.skype.com/invite/d3x9kblyOOIr">
+    <i class="fab fa-skype"> </i>
+    <span>live:manager_bluebash</span>
+    </a>
+  </div>
+</div>
+<div class="bg-secondary py-md-80 py-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h5 class="head2 font-size-32">
+        Frequently Asked Questions
+        </h5>
+        <p class="lead">The diversity of your business objectives and requirements, induce the multiplicity of
+          contract models we suggest.
+        </p>
+      </div>
+    </div>
+    <div class="accordion" id="accordionExample">
+      <div class="card border-bottom bg-secondary togglling-content frequently-collapse" id="headingOne">
+        <div>
+          <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <span class="d-flex justify-content-between my-8 head4 font-size-16 font-weight-bold align-items-center">
+            What Is Ruby on Rails?<i class="fas fa-angle-down"></i>
+            </span>
+          </button>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body bg-light pt-0 px-16">
+              <p class="mb-0">
+              Ruby on Rails is a Web development framework based on the Ruby programming language. Since its introduction in 2005, it has managed to stay one of the top most popular Web frameworks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-bottom bg-secondary togglling-content frequently-collapse" id="headingTwo">
+        <div>
+          <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <span class="d-flex justify-content-between my-8 head4 font-size-16 font-weight-bold align-items-center">
+            What Are the Benefits of Choosing Rails?
+            <i class="fas fa-angle-down"></i>
+            </span>
+          </button>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body bg-light pt-0 px-16">
+              <p class="mb-0">
+              With Ruby on Rails, you can quickly build startup apps, e-commerce apps, or software-as-a-service solutions. Rails was built to significantly speed up the Web development process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-bottom bg-secondary togglling-content frequently-collapse" id="headingThree">
+        <div>
+          <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
+            <span class="d-flex justify-content-between my-8 head4 font-size-16 font-weight-bold align-items-center">
+            Who Is Using Rails?<i class="fas fa-angle-down"></i>
+            </span>
+          </button>
+          <div id="collapsethree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body bg-light pt-0 px-16">
+              <p class="mb-0">
+              Ruby on Rails is used by several internationally recognizable brands in their technology stacks. The biggest names include: GitHub,  Airbnb,  Crunchbase, Dribbble, Hulu, Basecamp &amp; Codecademy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-bottom bg-secondary togglling-content frequently-collapse" id="headingFour">
+        <div>
+          <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
+            <span class="d-flex justify-content-between my-8 head4 font-size-16 font-weight-bold align-items-center">
+            Is RoR more secure and reliable than all other frameworks?<i class="fas fa-angle-down"></i>
+            </span>
+          </button>
+          <div id="collapsefour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+            <div class="card-body bg-light pt-0 px-16">
+              <p class="mb-0">
+              Most of the prominent security features which an ideal framework must have are already inbuilt in the RoR framework. This simply means it helps you stay away from all the possible risks, data attacks, and other threats.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-bottom bg-secondary togglling-content frequently-collapse" id="headingFive">
+        <div>
+          <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
+            <span class="d-flex justify-content-between my-8 head4 font-size-16 font-weight-bold align-items-center">
+            What database ruby on rails applications use?
+            <i class="fas fa-angle-down"></i>
+            </span>
+          </button>
+          <div id="collapsefive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+            <div class="card-body bg-light pt-0 px-16">
+              <p class="mb-0">
+              It works with a variety of databases like Postgres, Mysql, MongoDB, Neo4j &amp; Redis. It also has support of multi-databases for applications
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="py-md-80 py-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 border-lg-bottom-0 border-bottom">
+        <p class="text-uppercase">
+          Trusted by top brands across the globe
+        </p>
+        <p class="head4 mt-8 font-size-24 h5">Our Simplest Yet Robust Process To Get Your Project Estimation.</p>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <p class="h5">
+                <span class="bg-secondary py-8 px-16">1</span>
+                <span class="ml-8">Send us your requirement</span>
+              </p>
+            </div>
+            <p class="lead ml-48">Put forward your inquiry to us. And one of our representatives will connect with
+              you in
+              1 business day, for further communication.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <p class="h5">
+                <span class="bg-secondary px-16 py-8">2</span>
+                <span class="ml-8">Sign NDA</span>
+              </p>
+            </div>
+            <p class="lead ml-48">We sign NDA with all of our customers and make you feel secure. By doing so we
+              would like to assure you the privacy of your idea and project.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <p class="h5">
+                <span class="bg-secondary px-16 py-8">3</span>
+                <span class="ml-8">Analyzing your requirement</span>
+              </p>
+            </div>
+            <p class="lead ml-48">Once you share the details of your requirement, we will analyze it. Our team of
+              scrum masters will read and analyze the same, and will get back to you within few hours.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <p class="bg-secondary px-16 py-8 h5">4</p>
+              <p class="ml-8 h5">Get your estimation</p>
+            </div>
+            <p class="lead ml-48">Once our scrum masters and business team are done with analyzing the scope of
+              work
+              and compilation of necessary resources required for the project, we will get back to you with
+              estimated Cost and timeline for delivering your product.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-12 offset-xl-1 offset-md-0 mt-xl-0 mt-lg-0 mt-md-32 mt-32 offset-lg-1 offset-0  bg-white">
+      <div class="border-top border-primary shadow p-24 mb-5 rounded">
+       <div class="mb-40">
+        <p class="head4 h4">We’re excited to start soon!</p>
+      </div>
+      
+      <form class="new_contact" id="new_contact" enctype="multipart/form-data" action="https://www.bluebash.co/contacts" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="ohB9/mD7d/AsoUchsMcLydtoRrfiq3Ye1+R93LQ9UtOW6rQtqCinTCEjTbeDovYa0Pinem5NvYkMR2ggLUjP+w==">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-24">
+              <label class="label" for="contact_first_name">First Name</label>
+              <input class="form-control" placeholder="John" required="required" type="text" name="contact[first_name]" id="contact_first_name">
+            </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="mb-24">
+                <label class="label" for="contact_last_name">Last Name</label>
+                <input class="form-control" placeholder="Doe" required="required" type="text" name="contact[last_name]" id="contact_last_name">
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="mb-24">
+                <label class="label" for="contact_email">Email Address</label>
+                <input class="form-control" placeholder="john@gmail.com" required="required" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" type="text" name="contact[email]" id="contact_email">
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="mb-24">
+                <label class="label" for="contact_phone">Phone Number</label>
+                <input class="form-control" placeholder="+1 4455667788" required="required" maxlength="11" pattern="\d{0,11}" size="11" type="text" name="contact[phone]" id="contact_phone">
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="label" for="contact_document">Attach Document (optional)</label> <br>
+              <button class="btn btn-outline-primary text-uppercase doc">Upload Your file <i class="fas fa-upload"></i>
+                <input title="Upload your file" class="fileinput" id="contact_document" type="file" name="contact[document]">
+              </button>
+              <label for="contact_document" id="file_name">FileName.pdf </label>
+            </div>
+            <div class="col-12 mt-24">
+              <div class="form-group">
+                <label class="mb-5 mt-24" for="contact_description">Short Project Description (optional)</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="10" placeholder="I want to build an e-commerce mobile app. I’ve wireframes to start with." name="contact[description]"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-flex flex-md-row flex-column justify-content-between mt-24">
+                <span class="img-fluid"><script src="./ROR Development Consulting Solutions_ BlueBash_files/api.js(1).download" async="" defer=""></script>
+<div data-sitekey="6LdQrrQUAAAAANzDG2J1d4_o7KAmiboYsaB76PEH" class="g-recaptcha "><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="./ROR Development Consulting Solutions_ BlueBash_files/anchor(1).html" width="304" height="78" role="presentation" name="a-yiagg3jr9wdz" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./ROR Development Consulting Solutions_ BlueBash_files/saved_resource(2).html"></iframe></div>
+          <noscript>
+            <div>
+              <div style="width: 302px; height: 422px; position: relative;">
+                <div style="width: 302px; height: 422px; position: absolute;">
+                  <iframe
+                    src="https://www.recaptcha.net/recaptcha/api/fallback?k=6LdQrrQUAAAAANzDG2J1d4_o7KAmiboYsaB76PEH"
+                    name="ReCAPTCHA"
+                    style="width: 302px; height: 422px; border-style: none; border: 0; overflow: hidden;">
+                  </iframe>
+                </div>
+              </div>
+              <div style="width: 300px; height: 60px; border-style: none;
+                bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                  class="g-recaptcha-response"
+                  style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                  margin: 10px 25px; padding: 0px; resize: none;">
+                </textarea>
+              </div>
+            </div>
+          </noscript>
+ </span>
+                <div class="mt-md-0 mt-24 text-md-right text-center">
+                  <input type="submit" name="commit" value="Submit" class="btn btn-primary text-uppercase" data-disable-with="Submit">
+                </div>
+              </div>
+            </div>
+          </div>
+</form>        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-secondary py-md-80 py-40">
+  <div class="container">
+    <h5 class="head2 font-size-32">Our Insights Related to RoR.</h5>
+    <p class="lead">Our recent blog posts.</p>
+    <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+  <ol class="carousel-indicators carouselindi">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="rounded-circle"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1" class="rounded-circle active"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item">
+      <div class="container mt-40 px-0">
+  <div class="d-flex flex-column flex-sm-column flex-md-row flex-lg-row flex-xl-row ">
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://www.bluebash.co/blog/content/images/size/w300/2020/06/next.js.jpg" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text h6" itemprop="headline">Next.Js: Introduction, Benefits, and Pitfalls.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/next-js-introduction-benefits-and-pitfalls/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-sm-none d-none d-md-inline d-xl-inline ">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://images.unsplash.com/photo-1481887328591-3e277f9473dc?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text text-black h6" itemprop="headline">Hybrid Cloud Solutions.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/hybrid-cloud/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-sm-none d-none d-md-none d-xl-inline">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="articleimage" title="articleimage" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text text-black h6" itemprop="headline">Artificial Intelligence(AI) a modern approach.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/artificial-intelligence/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-sm-none d-none d-md-none d-xl-inline d-xl-inline">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://www.bluebash.co/blog/content/images/size/w2000/2020/02/elixir1.png" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text h6" itemprop="headline">Elixir: Functional programming continues to rise in 2020.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/elixir-functional-programming-continues-to-rise-in-2020/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    <div class="carousel-item active">
+      <div class="container mt-40 px-0">
+  <div class="d-flex flex-column flex-sm-column flex-md-row flex-lg-row flex-xl-row ">
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://images.unsplash.com/flagged/photo-1563192114-10457fe93b23?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text h6" itemprop="headline">Virtual Reality and Applications of virtual 
+            <br>reality - I.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/virtual-reality-applications/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-sm-none d-none d-md-inline d-xl-inline">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text text-black h6" itemprop="headline">Concept of Progressive <br>Web Applications.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/progressive-web-app-development-companylications/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-sm-none d-none d-md-none d-xl-inline">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://www.bluebash.co/blog/content/images/size/w2000/2019/08/aws-domain.jpg" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="articleimage" title="articleimage" itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text text-black h6" itemprop="headline">React deployment AWS SSL(https) and Subdomain.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/react-deployment-with-aws-ssl-https-with-subdomain/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-sm-none d-none d-md-none d-xl-inline d-xl-inline">
+      <div class="card card-cover shadow p-3 mb-5 bg-white" itemscope="" itemtype="https://schema.org/Article">
+        <span itemprop="author" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <span itemprop="publisher" itemref="organizationName" itemscope="" itemtype="https://schema.org/Organization"></span>
+        <div class="imagecover">
+          <img data-src="https://www.bluebash.co/blog/content/images/size/w2000/2019/08/Tablet.png" data-srcset="" class="card-img-top img-fluid lazy image-size lazyload" alt="..." itemprop="image" src="./ROR Development Consulting Solutions_ BlueBash_files/grey-bg-9bb49e2629847899af22e8c05053971a.jpg">
+        </div>
+        <div class="card-body px-0">
+          <p class="card-text h6" itemprop="headline">Rails API Active Storage, S3 and React JS.
+          </p>
+        </div>
+        <a class="pt-40 text-primary text-decoration-none link" href="https://www.bluebash.co/blog/rails-api-active-storage-and-react-js/" itemprop="sameAs url">Read
+        Post <span><i class="fas fa-angle-right ml-8 mt-8"></i></span></a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+
+    </main>
+    <footer>
+  <nav itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+    <div class="container-fluid bg-light">
+      <div class="row mt-xl-80 mt-md-80 mt-40 ">
+
+        <div class="col-xl-2 col-md-12 col-12 px-0">
+          <div class="row mx-0 f-d-grid">
+            <div class="col-12 col-md-4 col-lg-12">
+              <a href="https://www.bluebash.co/">
+                  <img class="img-fluid" alt="bluebash ror company" src="./ROR Development Consulting Solutions_ BlueBash_files/logo-full.svg">
+              </a>
+            </div>
+            <div class="col-12 col-md-4 col-lg-12 mt-xl-16 mt-md-0 mt-16 ">
+              <div><small class="small text-dark">24x7 Contact Sales </small></div>
+              <div class="pb-16  mb-0">
+                <small class="font-weight-bold text-dark">+91 8284866471</small>
+                <div class="mt-lg-16 mt-md-16 mt-16">
+                  <div><small class="small">Get Free Estimation</small></div>
+                  <div><a class="text-primary link" href="https://www.bluebash.co/company/contact-us">sales@bluebash.co</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-12">
+              <div class="d-flex flex-column mt-xl-16 mt-md-0 mt-16 ">
+                <div> <small class="small text-dark">Our Recognition</small></div>
+                <div class="d-flex">
+                  <span> <a href="https://clutch.co/profile/bluebash-consulting" target="_blank">
+                      <picture>
+                        <source media="(max-width:425px)" srcset="/packs/media/images/Clutch%20Profile@1x-d96e5e9c8ca241c27c53aeb46e8a77bc.png" class="img-fluid lazy">
+                        <source media="(max-width:768px)" srcset="/packs/media/images/Clutch%20Profile@2x-d96e5e9c8ca241c27c53aeb46e8a77bc.png" class="img-fluid lazy">
+                        <img alt="bluebash clutch account" class="img-fluid lazy" title="clutch" src="./ROR Development Consulting Solutions_ BlueBash_files/Clutch Profile@3x-d96e5e9c8ca241c27c53aeb46e8a77bc.png">
+                      </picture>
+                  </a></span>
+                  <span> <a href="https://www.goodfirms.co/company/bluebash-consulting-private-limited" target="_blank">
+                    <picture>
+                      <source media="(max-width:425px)" srcset="/packs/media/images/Goodfirms%20Profile@1x-308635143ccf6f47f1b5ffba45f5bd01.png" class="img-fluid lazy">
+                      <source media="(max-width:768px)" srcset="/packs/media/images/Goodfirms%20Profile@2x-8b5a083d07e00e40df7ceacd1a558ceb.png" class="img-fluid lazy">
+                      <img alt="bluebash goodfirm account" class="img-fluid lazy" title="clutch" src="./ROR Development Consulting Solutions_ BlueBash_files/Goodfirms Profile@3x-0b3bc73e224a4199be6f017240079c90.png">
+                    </picture>
+                  </a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-10 col-12 px-0 footer-nav-item">
+          <div class="row mx-0">
+            <div class="col-12 col-xl-6 px-0">
+              <div class="row mx-0">
+                <div class="col-lg-5 col-md-4 col-12 mt-lg-0 mt-md-80 mt-40">
+                  <div class="d-inline-flex flex-column" itemscope="" itemtype="https://schema.org/Service">
+                    <meta itemprop="serviceType" content="Front end">
+                    <meta itemprop="provider" content="Bluebash">
+                    <a class="font-weight-bold pb-16 mb-0 text-decoration-none caps" href="https://www.bluebash.co/services">SERVICES</a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/services/web-and-mobile-app-development-company" itemprop="offers"><span itemprop="name">Web App Development</span></a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/services/hire-top-dedicated-software-developers" itemprop="offers"><span itemprop="name">Hire Web App Developers</span></a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/services/ui-ux" itemprop="offers"><span itemprop="name">UI/UX Design</span></a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/services/our-expertise" itemprop="offers"><span itemprop="name">Our Expertise</span></a>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-md-8 col-12 px-0 mt-lg-0 mt-md-80 mt-40">
+                  <div class="row mx-0">
+                    <div class="col-4 col-md-3 col-lg-4">
+                      <div class="d-inline-flex flex-column" itemscope="" itemtype="https://schema.org/Service">
+                        <meta itemprop="serviceType" content="Technology">
+                        <meta itemprop="provider" content="Bluebash">
+                        <a class="font-weight-bold text-decoration-none pb-16 mb-0 caps" href="https://www.bluebash.co/technologies">TECHNOLOGIES</a>
+                        <a class="text-black text-decoration-none mt-md-0 mt-8 font-weight-normal pb-16" href="https://www.bluebash.co/services/ruby-on-rails-development" itemprop="offers"><span itemprop="name">Ruby on Rails</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">React JS</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Node.js</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Phoenix</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">React Native</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Electron</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Next.js</span></a>
+                        <a class="text-black text-decoration-none font-weight-normal" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">PostgresSQL</span></a>
+                      </div>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-4">
+                      <div class="d-inline-flex flex-column mt-8 justify-content-between " itemscope="" itemtype="https://schema.org/Service">
+                        <meta itemprop="serviceType" content="Technology">
+                        <meta itemprop="provider" content="Bluebash">
+                        <a class="text-black  text-decoration-none mt-md-32 mt-40 font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">MongoDB</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Elasticsearch</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">MySQL</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Neo4j</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Redis</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">AWS</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Heroku</span></a>
+                        <a class="text-black  text-decoration-none text-nowrap font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Digital Ocean</span></a>
+                      </div>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-4">
+                      <div class="d-inline-flex flex-column mt-8 justify-content-between" itemscope="" itemtype="https://schema.org/Service">
+                        <meta itemprop="serviceType" content="Technology">
+                        <meta itemprop="provider" content="Bluebash">
+                        <a class="text-black  text-decoration-none font-weight-normal mt-md-32 mt-40 pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Docker</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Puppet</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">CircleCI</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Spree</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Stripe</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Square Up</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Pay Pal</span></a>
+                        <a class="text-black  text-decoration-none font-weight-normal" href="https://www.bluebash.co/technologies" itemprop="offers"><span itemprop="name">Mailchimp</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xl-6 px-0">
+              <div class="row mx-0">
+                <div class="col-lg-5 col-md-4 col-12 mt-lg-0 mt-md-80 mt-40">
+                  <div class="d-inline-flex flex-column justify-content-between" itemscope="" itemtype="https://schema.org/Service">
+                    <meta itemprop="serviceType" content="Solution">
+                    <meta itemprop="provider" content="Bluebash">
+                    <a class="font-weight-bold pb-16 mb-0 caps" href="https://www.bluebash.co/solutions">SOLUTIONS</a>
+                    <a class="text-black  text-decoration-none  font-weight-normal pb-16" href="https://www.bluebash.co/solutions/website-speed-optimization-solutions" itemprop="offers"><span itemprop="name">Speed Optimization</span></a>
+                    <a class="text-black  text-decoration-none  font-weight-normal pb-16" href="https://www.bluebash.co/solutions#website-visibility" itemprop="offers"><span itemprop="name">Website Visibility </span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal text-nowrap pb-16" href="https://www.bluebash.co/solutions/ecommerce-applications-solutions" itemprop="offers"><span itemprop="name">e-Commerce Software Solution</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/solutions/custom-crm-development-services" itemprop="offers"><span itemprop="name">CRM Software Solution</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/solutions/electronic-health-record-ehr-software-solutions" itemprop="offers"><span itemprop="name">EHR Software Solution</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/solutions/erp-software-solutions" itemprop="offers"><span itemprop="name">ERP Software Solution</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/solutions/b2b-multi-vendor-marketplace-solutions" itemprop="offers"><span itemprop="name">B2B Software Solution</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal" href="https://www.bluebash.co/solutions/b2c-marketplace-software-solutions" itemprop="offers"><span itemprop="name">B2C Software Solution</span></a>
+                  </div>
+                </div>
+                <div class="col-md-4 col-12 mt-lg-0 mt-md-80 mt-40">
+                  <div class="d-inline-flex flex-column justify-content-between" itemscope="" itemtype="https://schema.org/Service">
+                    <meta itemprop="serviceType" content="Industry">
+                    <meta itemprop="provider" content="Bluebash">
+                    <a class="font-weight-bold text-decoration-none pb-16 mb-0 caps" href="https://www.bluebash.co/industries">INDUSTRIES</a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/real-estate-software-development-company" itemprop="offers"><span itemprop="name">Real Estate</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/banking-and-finance-software-development-company" itemprop="offers"><span itemprop="name">Fintech &amp; Banking</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/healthcare-and-fitness-app-development-company" itemprop="offers"><span itemprop="name">Health Care &amp; Fitness</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/social-media-app-development-company" itemprop="offers"><span itemprop="name">Social Marketing</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/tour-and-travel-app-development-company" itemprop="offers"><span itemprop="name">Travel &amp; Tourism</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/education-and-e-learning-app-development-company" itemprop="offers"><span itemprop="name">Education &amp; e-Learning</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/industries/ecommerce-web-design-and-development-company" itemprop="offers"><span itemprop="name">eCommerce &amp; Retail</span></a>
+                    <a class="text-black  text-decoration-none font-weight-normal" href="https://www.bluebash.co/solutions/sports-entertainment-software-development" itemprop="offers"><span itemprop="name">Sports &amp; Entertainment</span></a>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-lg-0 mt-md-80 mt-40">
+                  <div class="d-inline-flex flex-column justify-content-between">
+                    <a class="font-weight-bold text-decoration-none pb-16 mb-0 caps" href="https://www.bluebash.co/services/ruby-on-rails-development-company#">COMPANY</a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/company/about-us">About Us</a>
+                    <a class="text-black text-decoration-none  font-weight-normal pb-16 text-nowrap" href="https://www.bluebash.co/company/our-process">Our
+                    Process</a>
+                    <!-- <a class="text-black text-decoration-none font-weight-normal pb-16" href="">Our Team</a> -->
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/company/events">Events</a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/blog">Blogs</a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/company/career">Career</a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/company/contact-us">Contact</a>
+                    <a class="text-black text-decoration-none font-weight-normal pb-16" href="https://www.bluebash.co/company/media-kit">Media Kit</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- big footer ends here -->
+    <div class="container-fluid bg-secondary py-24 mt-xl-80 mt-md-80 mt-40">
+      <div class="row">
+        <div class="col-xl-5 col-md-12 col-12 text-xl-left   text-center ">
+          <span> <small class="muted">Copyright © 2021 BlueBash Consulting Pvt. Ltd. All rights
+          reserved.</small></span>
+          <span><a class="text-primary d-md-inline d-block mt-md-0 mt-16" href="https://www.bluebash.co/company/privacy-policy">Privacy
+          Policy.</a></span>
+        </div>
+        <div class="col-xl-7 col-md-12 col-12 text-xl-right  text-center mt-xl-0 mt-md-24 mt-24">
+          <span> <a href="https://twitter.com/bluebashco" target="_blank"><i class="fab fa-twitter-square icon"></i></a></span>
+          <span><a href="https://www.facebook.com/bluebashco" target="_blank"><i class="fab fa-facebook-square ml-8 icon"></i></a></span>
+          <span> <a href="https://www.instagram.com/bluebashco/" target="_blank"><i class="fab fa-instagram-square ml-8 icon"></i></a></span>
+          <span> <a href="https://www.linkedin.com/company/bluebash" target="_blank"><i class="fab fa-linkedin ml-8 icon"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async="" defer="" src="./ROR Development Consulting Solutions_ BlueBash_files/6780563.js(2).download"></script>
+<!-- End of HubSpot Embed Code -->
+</footer>
+  
+
+<iframe src="./ROR Development Consulting Solutions_ BlueBash_files/start.html" style="display:none"></iframe>
+<div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge" src="./ROR Development Consulting Solutions_ BlueBash_files/bframe.html" name="c-yiagg3jr9wdz" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div><div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge" src="./ROR Development Consulting Solutions_ BlueBash_files/bframe(1).html" name="c-zgkb82tc22yc" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div><div id="hubspot-messages-iframe-container" class="widget-align-right" style="width: 276px; height: 246px;"><div class="shadow-container"></div><iframe src="./ROR Development Consulting Solutions_ BlueBash_files/7fae38b39bc848f6a8a452d0bbf23818.html" title="chat widget" allowfullscreen=""></iframe></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
